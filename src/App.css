@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.tablemodify{
+  border:#282c34;
+  text-align:center;
+
+  
+}
+
+.footer{
+  position: absolute;
+  width:100%;
+  background-color: #222;
+  bottom: 0;
+  height:40px;
+}
+
+.login{
+  margin-left: auto;
+}
