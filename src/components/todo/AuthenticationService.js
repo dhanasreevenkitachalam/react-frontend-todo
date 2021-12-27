@@ -23,5 +23,17 @@ class AuthenticationService {
       }
       else return true;
   }
+
+  getUserName(){
+    
+    const username=sessionStorage.getItem('AuthenticatedUser')
+    console.log(username)
+    console.log(username);
+      if(username===null){
+        
+          return '';
+      }
+      else return username;
+  }
 }
 export default new AuthenticationService();
