@@ -15,8 +15,7 @@ class AuthenticationService {
   isLoggedIn(){
 
     const username=sessionStorage.getItem('AuthenticatedUser')
-    console.log(username)
-    console.log(username);
+  
       if(username===null){
           console.log("inside not logged in")
           return false;
@@ -27,8 +26,7 @@ class AuthenticationService {
   getUserName(){
     
     const username=sessionStorage.getItem('AuthenticatedUser')
-    console.log(username)
-    console.log(username);
+  
       if(username===null){
         
           return '';

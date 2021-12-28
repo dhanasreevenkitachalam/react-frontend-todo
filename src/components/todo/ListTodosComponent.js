@@ -22,13 +22,18 @@ class ListTodosComponent extends Component{
     }
 
 
+
+
     refreshTodos=()=>{
         const username=AuthenticationService.getUserName();
+        console.log(username)
         TodoDataService.retrieveAllTodos(username)
         .then((response)=>{
+          
            this.setState({
                todos:response.data
            })
+       
         })
     
     }
@@ -52,7 +57,7 @@ class ListTodosComponent extends Component{
     render(){
 
         const todos=this.state.todos.map((todo)=>{
-          
+          if(todo!==null){
             return(
                   
                     <React.Fragment key={todo.id}>
@@ -66,7 +71,10 @@ class ListTodosComponent extends Component{
                         </tr>
                         </React.Fragment>
                 
-            )
+            )}
+            else{
+                return <div/>
+            }
         })
         return(
             <div className="container">

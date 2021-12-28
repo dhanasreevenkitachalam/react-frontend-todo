@@ -17,12 +17,43 @@ class UpdateComponent extends Component{
             done:''
 
         }
+     
     }
 
     handleChange=(event)=>{
         this.setState({
             [event.target.name]:event.target.value
         })
+
+        console.log(this.state.targetDate+"inside change")
+    }
+ 
+
+
+    handleSubmit=(event)=>{
+         event.preventDefault();
+        let username=AuthenticationService.getUserName();
+        console.log(username);
+        let id=this.props.match.params.id;
+        let todo={
+        id:id,
+        description:this.state.description,
+        targetDate:moment(this.state.targetDate).format('YYYY-MM-DD'),
+        username:username,
+        done:false
+    }
+    
+ 
+    TodoDataService.updateTodoById(username,id,todo)
+    .then((res)=>
+    { 
+    
+        this.props.history.push('/todos')
+    }
+       // this.props.history.replace('/todos')}
+    )
+  // this.props.history.push('/todos')
+ 
     }
 
     componentDidMount(){
@@ -36,6 +67,8 @@ class UpdateComponent extends Component{
                 targetDate:moment(response.data.targetDate).format('YYYY-MM-DD'),
             })
         })
+
+        console.log(this.state.targetDate+"inside mount")
     }
 
 
@@ -47,7 +80,7 @@ class UpdateComponent extends Component{
             <br/>
             <div className="container">
                    <div className="col-12 col-md-9">
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                             <FormGroup row>
                             <Label md={2} htmlFor="description"><b>Description</b></Label>
                               <Col md={10}>
