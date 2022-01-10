@@ -1,10 +1,11 @@
-
+import axios from 'axios'
 
 class AuthenticationService {
 
   registerSuccessfulUser(username,password){
       console.log(username);
       sessionStorage.setItem('AuthenticatedUser',username);
+      this.setupAxiosInterceptors();
     
   }
 
@@ -32,6 +33,23 @@ class AuthenticationService {
           return '';
       }
       else return username;
+  }
+
+  setupAxiosInterceptors(){
+    let username='dhanasree'
+        let password='password'
+         let basicAuthorization= 'Basic ' + window.btoa(username+":"+password)
+         console.log(basicAuthorization)
+
+    axios.interceptors.request.use(
+      (config)=>{
+
+        if(this.isLoggedIn()){
+          config.headers.authorization=basicAuthorization
+        }
+        return config;
+      }
+    )
   }
 }
 export default new AuthenticationService();

@@ -54,6 +54,11 @@ class ListTodosComponent extends Component{
         this.props.history.push(`./update/${id}`);
 
     }
+
+
+    addTodo=()=>{
+        this.props.history.push('/addtodo')
+    }
     render(){
 
         const todos=this.state.todos.map((todo)=>{
@@ -101,6 +106,10 @@ class ListTodosComponent extends Component{
                  {todos}
             </tbody>
         </Table>
+        <div className="row">
+            <Button color="success" onClick={this.addTodo}>Add Todo</Button>
+
+        </div>
         </div>
 
         )
